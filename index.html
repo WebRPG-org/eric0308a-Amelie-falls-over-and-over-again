@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icon/icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="icon/icon.png">
+    <link rel="stylesheet" type="text/css" href="fonts/gamefont.css">
+    <link rel="stylesheet" type="text/css" href="css/touch-controls.css">
+    <title>艾蜜莉的堕落轮回～魔法学院与永无止尽的一周～</title>
+</head>
+
+<body style="background-color: black">
+    <script type="text/javascript" src="js/libs/pixi.js"></script>
+    <script type="text/javascript" src="js/libs/pixi-tilemap.js"></script>
+    <script type="text/javascript" src="js/libs/pixi-picture.js"></script>
+    <script type="text/javascript" src="js/libs/fpsmeter.js"></script>
+    <script type="text/javascript" src="js/libs/lz-string.js"></script>
+    <script type="text/javascript" src="js/libs/iphone-inline-video.browser.js"></script>
+    <script>
+        // Polyfills for Node.js features used by game scripts
+        window.require = function (name) {
+            if (name === 'fs') {
+                return {
+                    existsSync: function () { return true; }, // Pretend files exist to skip creation logic
+                    openSync: function () { },
+                    writeFileSync: function () { }
+                };
+            }
+            if (name === 'path') {
+                return {
+                    join: function () { return Array.prototype.join.call(arguments, '/'); },
+                    dirname: function () { return ''; }
+                };
+            }
+            if (name === 'nw.gui') {
+                return {
+                    Window: { get: function () { return { showDevTools: function () { } }; } }
+                };
+            }
+            return {};
+        };
+
+        if (typeof Buffer === 'undefined') {
+            window.Buffer = {
+                from: function (data, encoding) {
+                    if (encoding === 'base64') {
+                        return {
+                            toString: function (enc) {
+                                try {
+                                    return window.atob(data);
+                                } catch (e) { return data; }
+                            }
+                        };
+                    }
+                    return { toString: function () { return String(data); } };
+                }
+            };
+        }
+
+        // Mock process for path.dirname usage
+        window.process = window.process || { mainModule: { filename: '' } };
+    </script>
+    <script type="text/javascript" src="js/rpg_core.js"></script>
+    <script type="text/javascript" src="js/rpg_managers.js"></script>
+    <script type="text/javascript" src="js/rpg_objects.js"></script>
+    <script type="text/javascript" src="js/rpg_scenes.js"></script>
+    <script type="text/javascript" src="js/rpg_sprites.js"></script>
+    <script type="text/javascript" src="js/rpg_windows.js"></script>
+    <script type="text/javascript" src="js/plugins.js"></script>
+    <script type="text/javascript" src="js/touch-controls.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('sw.js').then(function (registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function (err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

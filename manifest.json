@@ -1,0 +1,16 @@
+{
+    "name": "艾蜜莉的堕落轮回",
+    "short_name": "Amelie",
+    "description": "艾蜜莉的堕落轮回～魔法学院与永无止尽的一周～",
+    "start_url": "./index.html",
+    "display": "fullscreen",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "icons": [
+        {
+            "src": "icon/icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

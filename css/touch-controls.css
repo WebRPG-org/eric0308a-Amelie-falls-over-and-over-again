@@ -1,0 +1,132 @@
+#virtual-controls {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    font-family: sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.control-btn {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    pointer-events: auto;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    font-size: 20px;
+    backdrop-filter: blur(2px);
+    touch-action: manipulation;
+}
+
+.control-btn:active,
+.control-btn.active {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(0.95);
+}
+
+/* D-Pad Container (Bottom Left) */
+#dpad-area {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 160px;
+    height: 160px;
+}
+
+#btn-up {
+    top: 0;
+    left: 50px;
+}
+
+#btn-down {
+    bottom: 0;
+    left: 50px;
+}
+
+#btn-left {
+    top: 50px;
+    left: 0;
+}
+
+#btn-right {
+    top: 50px;
+    right: 0;
+}
+
+/* Action Buttons (Bottom Right) */
+#action-area {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 180px;
+    height: 120px;
+}
+
+/* Z / OK */
+#btn-z {
+    bottom: 0;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    background: rgba(100, 255, 100, 0.2);
+}
+
+/* X / Cancel / Menu */
+#btn-x {
+    bottom: 20px;
+    right: 90px;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 100, 100, 0.2);
+}
+
+/* Control / Skip (Top Right or near actions) */
+#btn-ctrl {
+    top: -60px;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    /* Square-ish */
+    font-size: 14px;
+    background: rgba(100, 100, 255, 0.2);
+}
+
+/* Toggle Button (Top Center/Left) */
+#btn-toggle {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 30px;
+    border-radius: 15px;
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    pointer-events: auto;
+    z-index: 1001;
+}
+
+.controls-hidden #dpad-area,
+.controls-hidden #action-area {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+#dpad-area,
+#action-area {
+    transition: opacity 0.3s;
+}
